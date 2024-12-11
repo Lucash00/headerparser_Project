@@ -24,7 +24,7 @@ app.get('/api/whoami', function (req, res) {
   const language = req.headers['accept-language'].split(',')[0];
 
   // Obtiene el software (navegador y sistema operativo)
-  const software = req.headers['user-agent'].split(') ')[0].slice(7);
+  const software = req.headers['user-agent'];
 
   // Devuelve los datos en formato JSON
   res.json({
