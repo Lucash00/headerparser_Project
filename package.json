@@ -1,29 +1,18 @@
 {
-  "name": "request-header-parser-microservice",
-  "version": "0.0.2",
-  "description": "API project for freeCodeCamp",
+  "name": "boilerplate-project-headerparser",
+  "version": "1.0.0",
+  "description": "This is the boilerplate for the Request Header Parser Microservice project. Instructions for building your project can be found at https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/request-header-parser-microservice",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": ["freecodecamp", "api", "nodejs", "express", "cors", "dotenv"],
+  "author": "Lucas Moreno",
+  "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.1",
-    "dotenv": "^8.2.0",
-    "express": "^4.18.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/freeCodeCamp/boilerplate-project-headerparser.git"
-  },
-  "bugs": {
-    "url": "https://github.com/freeCodeCamp/freeCodeCamp/issues"
-  },
-  "homepage": "https://github.com/freeCodeCamp/boilerplate-project-headerparser#readme",
-  "author": "freeCodeCamp <team@freecodecamp.org>",
-  "keywords": [
-    "freeCodeCamp",
-    "node",
-    "express"
-  ],
-  "license": "MIT"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
 }
