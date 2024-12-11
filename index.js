@@ -19,9 +19,24 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// your first API endpoint...
+// your first API endpoint... 
 app.get('/api/hello', function (req, res) {
   res.json({ greeting: 'hello API' });
+});
+
+// API endpoint for Request Header Parser
+app.get('/api/whoami', function (req, res) {
+  // Parse the requested information from the headers
+  const ipAddress = req.ip; // IP address of the request
+  const language = req.headers['accept-language']; // Language from the request headers
+  const userAgent = req.headers['user-agent']; // User agent string from the request headers
+
+  // Respond with the parsed data
+  res.json({
+    ipaddress: ipAddress,
+    language: language,
+    software: userAgent
+  });
 });
 
 // listen for requests :)
