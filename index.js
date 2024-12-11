@@ -1,45 +1,40 @@
-// index.js
-// where your node app starts
-
-// init project
+// Requiere las dependencias
 require('dotenv').config();
 var express = require('express');
 var app = express();
 
-// enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
-// so that your API is remotely testable by FCC
+// Habilita CORS
 var cors = require('cors');
-app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 204
+app.use(cors({ optionsSuccessStatus: 200 }));
 
-// http://expressjs.com/en/starter/static-files.html
+// Configura archivos estáticos
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
+// Ruta principal
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// your first API endpoint... 
-app.get('/api/hello', function (req, res) {
-  res.json({ greeting: 'hello API' });
-});
-
-// API endpoint for Request Header Parser
+// Ruta del API para obtener los detalles de la solicitud
 app.get('/api/whoami', function (req, res) {
-  // Parse the requested information from the headers
-  const ipAddress = req.ip; // IP address of the request
-  const language = req.headers['accept-language']; // Language from the request headers
-  const userAgent = req.headers['user-agent']; // User agent string from the request headers
+  // Obtiene la IP pública del cliente
+  const ipaddress = req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'].split(',')[0] : req.connection.remoteAddress;
 
-  // Respond with the parsed data
+  // Obtiene el idioma de la cabecera
+  const language = req.headers['accept-language'].split(',')[0];
+
+  // Obtiene el software (navegador y sistema operativo)
+  const software = req.headers['user-agent'].split(') ')[0].slice(7);
+
+  // Devuelve los datos en formato JSON
   res.json({
-    ipaddress: ipAddress,
+    ipaddress: ipaddress,
     language: language,
-    software: userAgent
+    software: software
   });
 });
 
-// listen for requests :)
+// Escucha en el puerto definido por la variable de entorno o en el puerto 3000
 var listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
